@@ -1,6 +1,15 @@
+const { debug } = require("console");
+const { debuglog } = require("util");
+
 map_key("A", "snippet", "toggle_attack()");
 
 var attack_mode = false;
+
+function log_debug(message, color) {
+    if (DEBUG) {
+        log(message, color);
+    }
+}
 
 function toggle_attack() {
     attack_mode = !attack_mode;
@@ -30,20 +39,20 @@ function regen_stuff() {
     }
 
     if (character.mp / character.max_mp < 0.2) {
-        log("use_skill('use_mp')");
+        debug_log("use_skill('use_mp')");
         return use_skill("use_mp");
     }
     if (character.max_mp - character.mp >= 100) {
-        log(`is_on_cooldown('regen_mp'): ${is_on_cooldown("regen_mp")}`);
-        log("use_skill('regen_mp')");
+        debug_log(`is_on_cooldown('regen_mp'): ${is_on_cooldown("regen_mp")}`);
+        debug_log("use_skill('regen_mp')");
         return use_skill("regen_mp");
     }
     if (character.max_hp - character.hp >= 50) {
-        log("use_skill('regen_hp')");
+        debug_log("use_skill('regen_hp')");
         return use_skill("regen_hp");
     }
     if (character.hp / character.max_hp < 0.2) {
-        log("use_skill('use_hp')");
+        debug_log("use_skill('use_hp')");
         return run_away();
         // return use_skill("use_hp");
     }
