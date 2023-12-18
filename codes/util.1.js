@@ -21,3 +21,10 @@ function myNearbyPartyMembers() {
         (e) => e.party === character.party
     );
 }
+
+module.exports = {
+    debug_log,
+    vectorPretty,
+    myNearbyCharacters,
+    myNearbyPartyMembers,
+};
